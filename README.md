@@ -19,6 +19,3 @@ Group study on Algorithm, since 2019.03.16
 
 
 ## Acknowledgments
-
-* Jungmoo
-* etc
