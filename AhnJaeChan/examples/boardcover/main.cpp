@@ -33,7 +33,7 @@ int main() {
 
     input_stream >> C;
 
-    for (int i = 0; i < C; i++) {
+    for (int i = 0; i < C; ++i) {
         input_stream >> H >> W;
 
         bool board[20][20];
@@ -76,8 +76,8 @@ int countCases(bool board[20][20], int H, int W) {
     int w = -1, h = -1;
     int i, j;
 
-    for (i = 0; i < H; i++) {
-        for (j = 0; j < W; j++) {
+    for (i = 0; i < H; ++i) {
+        for (j = 0; j < W; ++j) {
             if (!board[i][j]) {
                 h = i;
                 w = j;
@@ -90,7 +90,7 @@ int countCases(bool board[20][20], int H, int W) {
     if (w == -1) return 1; // Case all filled.
 
     int cnt = 0;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 4; ++i) {
         int x1 = w + ROTATION_COORDS[i][0][0];
         int y1 = h + ROTATION_COORDS[i][0][1];
 
