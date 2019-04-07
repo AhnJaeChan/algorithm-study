@@ -4,26 +4,25 @@
 
 using namespace std;
 
-const int INF = 1234567890;
 
 int main() {
-    int T;
-    cin >> T;
-    while (T--) {
-        int N, P, ret = INF;
-        cin >> N >> P;
-        vector<int> skill_rating(N);
-        for (int &a : skill_rating) {
-            cin >> a;
-        }
-        sort(skill_rating.begin(), skill_rating.end(), greater<int>());
-        for (int i = 0; i < N - P; i++) {
-            int case_result = 0;
-            for (int j = i + 1; j < i + P; j++) {
-                case_result += skill_rating[i] - skill_rating[j];
-            }
-            ret = min(case_result, ret);
-        }
-        cout << "Case #1: " << ret << endl;
+    int N;
+    cin >> N;
+    int cipher = 1, temp = N;
+    while (temp /= 10) {
+        cipher++;
     }
+    int sub_origin_num = cipher * 10;
+    int origin_num = 0;
+    for (int i = N - sub_origin_num; i < N; i++) {
+        int sum = i;
+        for (int j = 0; j < cipher; j++) {
+            sum += i / (int)pow(10, j) % 10;
+        }
+        if (sum == N) {
+            origin_num = i;
+            break;
+        }
+    }
+    cout << origin_num << endl;
 }
