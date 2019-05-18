@@ -5,37 +5,46 @@
 
 using namespace std;
 
+int cache[101][101];
+string W, S;
 
-bool match(string &w, string &s) {
-    string::size_type pos = 0;
 
-    while (pos < w.size() && pos < s.size() && (w[pos] == '?' || w[pos] == s[pos])) {
-        ++pos;
+int match(int w, int s) {
+    int &ret = cache[w][s];
+    if (ret != -1) {
+        return ret;
     }
 
-    if (pos == w.size()) {
-        return pos == s.size();
+    while (s < S.size() && w < W.size() && (W[w] == '?' || W[w] == S[s])) {
+        ++w;
+        ++s;
     }
 
-    if (w[pos] == '*') {
-        for (int offset = 0; pos + offset <= s.size(); ++offset) {
-            string new_w = w.substr(pos + 1);
-            string new_s = s.substr(pos + offset);
+    if (w == W.size()) {
+        return ret = (s == S.size());
+    }
 
-            if (match(new_w, new_s)) {
-                return true;
+    if (W[w] == '*') {
+        for (int offset = 0; offset + s <= S.size(); ++offset) {
+            if (match(w + 1, s + 1)) {
+                return 1;
             }
         }
     }
 
-    return false;
+    return 0;
+}
+
+void resetCache() {
+    for (int i = 0; i < 101; ++i) {
+        for (int j = 0; j < 101; ++j) {
+            cache[i][j] = -1;
+        }
+    }
 }
 
 int main() {
-
-
     int C;
-    string W, S;
     int n;
 
     cin >> C;
@@ -44,9 +53,11 @@ int main() {
         cin >> W >> n;
 
         for (int j = 0; j < n; ++j) {
+            resetCache();
+
             cin >> S;
 
-            if (match(W, S)) {
+            if (match(0, 0) == 1) {
                 cout << S << endl;
             }
         }
