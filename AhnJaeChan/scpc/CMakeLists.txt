@@ -3,4 +3,4 @@ project(XorOdd)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(scpc GoodNumber.cpp)
+add_executable(scpc Chemist.cpp)
