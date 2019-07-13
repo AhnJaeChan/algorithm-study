@@ -44,21 +44,10 @@ const string periodArr[] = {
 };
 
 set<string> periods;
+bool checked[50001];
 
-int isPossible(string &s, int idx) {
-  if (idx == s.length()) {
-    return 0;
-  } else if (idx > s.length()) {
-    return -1;
-  }
-
-  if (periods.find(s.substr(idx, 1)) != periods.end()) {
-    return isPossible(s, idx + 1);
-  } else if (periods.find(s.substr(idx, 2)) != periods.end()) {
-    return isPossible(s, idx + 2);
-  } else {
-    return -1;
-  }
+bool contains(const string &s) {
+  return periods.find(s) != periods.end();
 }
 
 int main(int argc, char **argv) {
@@ -93,15 +82,26 @@ int main(int argc, char **argv) {
      */
 
     cin >> s;
-
     transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return tolower(c); });
-    Answer = isPossible(s, 0);
+
+    fill(checked, checked + 50001, false);
+    checked[0] = true;
+    checked[1] = contains(s.substr(0, 1));
+
+    for (int i = 2; i <= s.length(); ++i) {
+      checked[i] = (checked[i - 1] && contains(s.substr(i - 1, 1))) ||
+                   (checked[i - 2] && contains(s.substr(i - 2, 2)));
+
+      if (!(checked[i] || checked[i - 1])) {
+        break;
+      }
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
     // Print the answer to standard output(screen).
     cout << "Case #" << test_case + 1 << endl;
-    cout << (Answer < 0 ? "NO" : "YES") << endl;
+    cout << (checked[s.length()] ? "YES" : "NO") << endl;
   }
 
   return 0;//Your program should return 0 on normal termination.
