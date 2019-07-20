@@ -3,4 +3,4 @@ project(XorOdd)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(scpc Chemist.cpp)
+add_executable(scpc FrogJump.cpp)
