@@ -1,0 +1,156 @@
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp: In function 'void solve(std::__cxx11::string, bool*)':
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:24:17: error: invalid use of member 'std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::length() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long long unsigned int]' (did you forget the '&' ?)
+   if(symbols[j].length == 1) {
+      ~~~~~~~~~~~^~~~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:25:33: error: no match for 'operator-' (operand types are 'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} and 'char')
+    if(sentence[0] == symbols[j] - 'A')
+                      ~~~~~~~~~~~^~~~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:389:5: note: candidate: 'template<class _IteratorL, class _IteratorR> decltype ((__y.base() - __x.base())) std::operator-(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)'
+     operator-(const reverse_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:389:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:25:35: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const std::reverse_iterator<_Iterator>'
+    if(sentence[0] == symbols[j] - 'A')
+                                   ^~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:1185:5: note: candidate: 'template<class _IteratorL, class _IteratorR> decltype ((__x.base() - __y.base())) std::operator-(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)'
+     operator-(const move_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:1185:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:25:35: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const std::move_iterator<_IteratorL>'
+    if(sentence[0] == symbols[j] - 'A')
+                                   ^~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:951:5: note: candidate: 'template<class _IteratorL, class _IteratorR, class _Container> decltype ((__lhs.base() - __rhs.base())) __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)'
+     operator-(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:951:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:25:35: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const __gnu_cxx::__normal_iterator<_IteratorL, _Container>'
+    if(sentence[0] == symbols[j] - 'A')
+                                   ^~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:963:5: note: candidate: 'template<class _Iterator, class _Container> typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)'
+     operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:963:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:25:35: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const __gnu_cxx::__normal_iterator<_Iterator, _Container>'
+    if(sentence[0] == symbols[j] - 'A')
+                                   ^~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:26:12: error: 'True' was not declared in this scope
+     d[0] = True;
+            ^~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:26:12: note: suggested alternative: 'free'
+     d[0] = True;
+            ^~~~
+            free
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:30:12: error: 'True' was not declared in this scope
+     d[1] = True;
+            ^~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:30:12: note: suggested alternative: 'free'
+     d[1] = True;
+            ^~~~
+            free
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:36:18: error: invalid use of member 'std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::length() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = long long unsigned int]' (did you forget the '&' ?)
+    if(symbols[j].length == 1) {
+       ~~~~~~~~~~~^~~~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:37:51: error: no match for 'operator-' (operand types are 'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} and 'char')
+     if(d[i - 1] == 1 && sentence[i] == symbols[j] - 'A')
+                                        ~~~~~~~~~~~^~~~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:389:5: note: candidate: 'template<class _IteratorL, class _IteratorR> decltype ((__y.base() - __x.base())) std::operator-(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)'
+     operator-(const reverse_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:389:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:37:53: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const std::reverse_iterator<_Iterator>'
+     if(d[i - 1] == 1 && sentence[i] == symbols[j] - 'A')
+                                                     ^~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:1185:5: note: candidate: 'template<class _IteratorL, class _IteratorR> decltype ((__x.base() - __y.base())) std::operator-(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)'
+     operator-(const move_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:1185:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:37:53: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const std::move_iterator<_IteratorL>'
+     if(d[i - 1] == 1 && sentence[i] == symbols[j] - 'A')
+                                                     ^~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:951:5: note: candidate: 'template<class _IteratorL, class _IteratorR, class _Container> decltype ((__lhs.base() - __rhs.base())) __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)'
+     operator-(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:951:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:37:53: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const __gnu_cxx::__normal_iterator<_IteratorL, _Container>'
+     if(d[i - 1] == 1 && sentence[i] == symbols[j] - 'A')
+                                                     ^~~
+In file included from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algobase.h:67,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/char_traits.h:39,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios:40,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream:38,
+                 from C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream:39,
+                 from D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:1:
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:963:5: note: candidate: 'template<class _Iterator, class _Container> typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type __gnu_cxx::operator-(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)'
+     operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^~~~~~~~
+C:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_iterator.h:963:5: note:   template argument deduction/substitution failed:
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:37:53: note:   'std::__cxx11::string' {aka 'std::__cxx11::basic_string<char>'} is not derived from 'const __gnu_cxx::__normal_iterator<_Iterator, _Container>'
+     if(d[i - 1] == 1 && sentence[i] == symbols[j] - 'A')
+                                                     ^~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:38:13: error: 'True' was not declared in this scope
+      d[i] = True;
+             ^~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:38:13: note: suggested alternative: 'free'
+      d[i] = True;
+             ^~~~
+             free
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:42:13: error: 'True' was not declared in this scope
+      d[i] = True;
+             ^~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:42:13: note: suggested alternative: 'free'
+      d[i] = True;
+             ^~~~
+             free
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:44:17: error: 'True' was not declared in this scope
+      d[i + 1] = True;
+                 ^~~~
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:44:17: note: suggested alternative: 'free'
+      d[i + 1] = True;
+                 ^~~~
+                 free
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp: In function 'int main(int, char**)':
+D:\GoogleDrive\algorithm-study\dbtkd1711\codeground\9.cpp:63:23: error: invalid types 'bool*[<unresolved overloaded function type>]' for array subscript
+   if(d[sentence.length] == 1)
+                       ^
