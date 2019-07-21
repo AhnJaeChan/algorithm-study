@@ -24,17 +24,14 @@ int main() {
 }
 
 void move_tower(int from, int to, int by, int number) {
+    vector <int> process;
+    process.push_back(from);
+    process.push_back(to);
     if(number == 1) {
-        vector <int> process;
-        process.push_back(from);
-        process.push_back(to);
         processes.push_back(process);
         return;
     }
     move_tower(from, by, to, number-1);
-    vector <int> process;
-    process.push_back(from);
-    process.push_back(to);
     processes.push_back(process);
     move_tower(by, to, from, number-1);
 
