@@ -2,8 +2,6 @@
 #include <vector>
 #include <algorithm>
 
-//#define DEBUG_MODE
-
 using namespace std;
 
 class Point {
@@ -37,17 +35,19 @@ pair<int, int> connection[MAX_POINTS];
 bool solve() {
   // Check each verticals
   for (int i = 0; i < N; i += 2) {
-    int x1 = vpoints[i].p1;
-    int y1 = vpoints[i].p2;
-    int y2 = vpoints[i + 1].p2;
-
     // Check for horizontal intersection
     for (int j = 0; j < N; j += 2) {
-      if (hpoints[j].p1 > y1 && hpoints[j].p1 < y2) {
-        if (hpoints[j].p2 < x1 && hpoints[j + 1].p2 > x1) {
+      if (vpoints[i].p2 < hpoints[j].p1 && hpoints[j].p1 < vpoints[i + 1].p2) {
+        if (hpoints[j].p2 < vpoints[i].p1 && vpoints[i].p1 < hpoints[j + 1].p2) {
           return false;
         }
       }
+    }
+  }
+
+  for (int i = 0; i < N; i += 2) {
+    if (vpoints[i].p1 != vpoints[i + 1].p1 || hpoints[i].p1 != hpoints[i + 1].p1) {
+      return false;
     }
   }
 
@@ -62,13 +62,6 @@ bool solve() {
     connection[hpoints[i + 1].key].second = hpoints[i].key;
   }
 
-#ifdef DEBUG_MODE
-  cout << endl;
-  for (int i = 0; i < vpoints.size(); ++i) {
-    cout << i << ": " << connection[i].first << ", " << connection[i].second << endl;
-  }
-#endif
-
   // Start from key 0's vertical connection and follow the path
   // until it comes back to index 0. If the count is the same
   // as the number of points, it means that the line connection
@@ -78,16 +71,9 @@ bool solve() {
   int key = connection[0].first;
 
   while (key != 0) {
-#ifdef DEBUG_MODE
-    cout << key << " -> ";
-#endif
     key = (count % 2 == 0) ? connection[key].first : connection[key].second;
     count++;
   }
-
-#ifdef DEBUG_MODE
-  cout << "0" << endl << count << endl;
-#endif
 
   return count == vpoints.size();
 }
@@ -98,11 +84,6 @@ int main() {
   for (int tc = 0; tc < T; ++tc) {
     cin >> N;
 
-    if (N % 2 == 1) {
-      cout << "NO" << endl;
-      continue;
-    }
-
     vpoints.clear();
     hpoints.clear();
 
@@ -111,6 +92,11 @@ int main() {
       cin >> x >> y;
       vpoints.emplace_back(Point(i, x, y));
       hpoints.emplace_back(Point(i, y, x));
+    }
+
+    if (N % 2 == 1) {
+      cout << "NO" << endl;
+      continue;
     }
 
     sort(vpoints.begin(), vpoints.end());
