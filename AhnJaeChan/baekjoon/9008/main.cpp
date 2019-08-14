@@ -45,6 +45,7 @@ bool solve() {
     }
   }
 
+  // Check for odd # of points on both vertical and horizontal pairs
   for (int i = 0; i < N; i += 2) {
     if (vpoints[i].p1 != vpoints[i + 1].p1 || hpoints[i].p1 != hpoints[i + 1].p1) {
       return false;
