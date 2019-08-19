@@ -14,7 +14,7 @@ public:
   Node *left;
   Node *right;
 
-  Node(int key) {
+  explicit Node(int key) {
     this->key = key;
     this->left = nullptr;
     this->right = nullptr;
