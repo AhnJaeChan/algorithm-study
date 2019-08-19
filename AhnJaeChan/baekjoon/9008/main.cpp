@@ -100,8 +100,12 @@ int main() {
       continue;
     }
 
-    sort(vpoints.begin(), vpoints.end());
+    sort(vpoints.begin(), vpoints.end(), [](const Point &a, const Point &b) { return a.key > b.key; });
     sort(hpoints.begin(), hpoints.end());
+
+    for (auto p: vpoints) {
+      cout << p << endl;
+    }
 
     cout << (solve() ? "YES" : "NO") << endl;
   }
