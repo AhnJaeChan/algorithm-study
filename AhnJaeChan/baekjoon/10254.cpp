@@ -16,16 +16,8 @@ public:
 
   Point(int x, int y) : x(x), y(y) {};
 
-  static Point center(const Point &p1, const Point &p2) {
-    return {(p1.x + p2.x) / 2, (p1.y + p2.y) / 2};
-  }
-
   static double euclidean_distance(const Point &p1, const Point &p2) {
     return sqrt(pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2));
-  }
-
-  static double radius(const Point &p1, const Point &p2) {
-    return euclidean_distance(p1, p2) / 2;
   }
 
   bool is_inside(const Point &center, double radius) {
@@ -59,22 +51,20 @@ int main(int argc, char *argv[]) {
     Point ps, pt;
     cin >> ps >> pt;
 
-    Point center = Point::center(ps, pt);
-    double radius = Point::radius(ps, pt);
+    double radius = Point::euclidean_distance(ps, pt);
 
     Point p;
     for (int i = 2; i < n; i++) {
       cin >> p;
 
-      if (!p.is_inside(center, radius)) {
+      if (!(p.is_inside(ps, radius) && p.is_inside(pt, radius))) {
         if (Point::euclidean_distance(p, ps) > Point::euclidean_distance(p, pt)) {
           pt = p;
         } else {
           ps = p;
         }
 
-        center = Point::center(ps, pt);
-        radius = Point::radius(ps, pt);
+        radius = Point::euclidean_distance(ps, pt);
       }
     }
 
