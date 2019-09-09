@@ -93,11 +93,12 @@ public:
     while (cur->key < key) {
       cur = cur->next;
     }
-    return cur->prev;
+
+    return cur->prev == nullptr ? head : cur->prev;
   }
 
   void insert(Node *prev, int key) {
-    if (prev->key == key) {
+    if (prev->key == key && prev != head) {
       prev->increment();
     } else {
       Node *next = prev->next;
@@ -168,8 +169,9 @@ public:
     Node *path[level];
     Node *node = search(key, path);
 
-    // Found, increment size of node
-    if (node->next->key == key) {
+    // Found, increment size of node.
+    // Special case on INT32_MAX handled by checking if next is tail.
+    if (node->next->key == key && node->next != bottom()->tail) {
       node = node->next;
       while (node != nullptr) {
         node->increment();
@@ -178,7 +180,7 @@ public:
       return;
     }
 
-    // Not found, new node is needed
+    // Not found, new node is needed.
     int height = rand() % level;
     for (int i = 0; i <= height; i++) {
       list[i].insert(path[i], key);
@@ -222,6 +224,10 @@ public:
     Node *cur = l->head;
     while (l != bottom()) {
       path[l->level] = l->search(cur, key);
+      if (path[l->level] == nullptr) {
+        cout << "TEST" << endl;
+        exit(-1);
+      }
       cur = path[l->level]->down;
       l = l->below();
     }
@@ -262,32 +268,6 @@ ostream &operator<<(ostream &os, const SkipList &skip_list) {
   return os;
 }
 
-int main() {
-  int N = 1000000;
-
-  SkipList *skip_list = new SkipList((int) log2(N));
-
-  for (int i = 0; i < rand() % 1000000; ++i) {
-    skip_list->insert(rand());
-  }
-
-  for (int i = 0; i < rand() % 10000; ++i) {
-    skip_list->remove(rand() % 2 == 0 ? SkipList::Order::MIN : SkipList::Order::MAX);
-  }
-
-  skip_list->insert(INT32_MIN);
-
-  if (skip_list->is_empty()) {
-    cout << "EMPTY" << endl;
-  } else {
-    cout << skip_list->fetch(SkipList::Order::MAX) << " " << skip_list->fetch(SkipList::Order::MIN) << endl;
-  }
-
-  delete skip_list;
-
-  return 0;
-}
-/*
 int main(int argc, char *argv[]) {
   int T;
   cin >> T;
@@ -320,8 +300,6 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    cout << *skip_list << endl;
-
     if (skip_list->is_empty()) {
       cout << "EMPTY" << endl;
     } else {
@@ -333,4 +311,3 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
-*/
