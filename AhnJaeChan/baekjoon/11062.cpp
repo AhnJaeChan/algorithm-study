@@ -28,11 +28,10 @@ int find_max(int i, int j, Turn turn) {
   if (Turn::GEUN_WOO == turn) {
     dp[i][j][turn] = max(find_max(i + 1, j, Turn::MYOUNG_WOO) + cards[i],
                          find_max(i, j - 1, Turn::MYOUNG_WOO) + cards[j]);
-    return dp[i][j][turn];
   } else {
     dp[i][j][turn] = min(find_max(i + 1, j, Turn::GEUN_WOO), find_max(i, j - 1, Turn::GEUN_WOO));
-    return dp[i][j][turn];
   }
+  return dp[i][j][turn];
 }
 
 int main(int argc, char *argv[]) {
