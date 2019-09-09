@@ -50,6 +50,5 @@ int main(int argc, char *argv[]) {
     cout << min_cost(1, K) << endl;
   }
 
-
   return 0;
 }
