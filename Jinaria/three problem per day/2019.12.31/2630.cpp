@@ -6,54 +6,43 @@
 using namespace std;
 
 #define WHITE       0
-#define BLUE        1
-#define DUMMY       2
-#define BOARD_SIZE  20
+#define BLUE        4
+#define DUMMY       5
+#define BOARD_SIZE  200
 
 
 int white, blue;
+int board[BOARD_SIZE][BOARD_SIZE];
 
-int quadtree(int *arr, int n, int size) {
+int quadtree(int n, int size, int col, int row) {
     if (size == 1) {
-        return *arr;
+        return board[col][row];
     }
     int ret = 0;
-    int nextSize = size / 2;
+    int nextSize = size >> 1;
     for (int i = 0; i < 4; ++i) {
-        ret += quadtree(arr + (i >> 1) * n * nextSize + (i & 1) * nextSize, n, nextSize);
+        ret += quadtree(n, nextSize, col + (i >> 1)* nextSize, row + (i & 1) * nextSize);
     }
-    if (ret < BLUE) {
-        return WHITE;
-    }
-    else if (ret < DUMMY) {
-        return BLUE;
-    }
-    else {
-        int t = n - ret / DUMMY;
-        blue += (ret % DUMMY);
-        white += (t - ret % DUMMY);
-        return DUMMY;
-    }
+    if (ret == 0) return 0;
+    if (ret == BLUE) return 1;
+    int t = 4 - ret / DUMMY;
+    blue += (ret % DUMMY);
+    white += (t - ret % DUMMY);
+    return DUMMY;
 }
 
 int main() {
     int n;
     scanf("%d", &n);
-    int* board = (int*)malloc(sizeof(int) * n * n);
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            scanf("%d", &board[i * n + j]);
+            scanf("%d", &board[i][j]);
         }
     }
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            printf("%d ", board[i * n + j]);
-        }
-        printf("\n");
-    }
-    //int result = quadtree(board, n, n);
-    //if (result == WHITE) white++;
-    //else if (result == BLUE) blue++;
+    int result = quadtree(n, n, 0, 0);
+    if (result == WHITE) white++;
+    else if (result == BLUE) blue++;
 
-    //printf("%d\n%d\n", white, blue);
- }
+
+    printf("%d\n%d\n", white, blue);
+}
