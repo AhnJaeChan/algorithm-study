@@ -28,17 +28,13 @@ int main() {
 
     for (int i = 3; i <= N; ++i) {
         for (int j = 1; j <= N - i + 1; ++j) {
-            int a = d[j][j].first * d[j][j].second * d[j + 1][j + i - 1].second + info[j + 1][j + i - 1];
-            int b = info[j][j + i - 2] + d[j][j + i - 2].first * d[j][j + i - 2].second * d[j + i - 1][j + i - 1].second;
-            if (a < b) {
-                d[j][j + i - 1] = { d[j][j].first, d[j + 1][j + i - 1].second };
-                info[j][j + i - 1] = a;
+            int minNum = 0x7fffffff;
+            for (int k = 0; k < i - 1; k++) {
+                minNum = min(minNum, d[j][j + k].first * d[j][j + k].second * d[j + k + 1][j + i - 1].second + info[j][j + k] + info[j + k + 1][j + i - 1]);
             }
-            else {
-                d[j][j + i - 1] = { d[j][j + i - 2].first, d[j + i - 1][j + i - 1].second };
-                info[j][j + i - 1] = b;
-            }
+            d[j][j + i - 1] = { d[j][j].first, d[j + i - 1][j + i - 1].second };
+            info[j][j + i - 1] = minNum;
         }
     }
     printf("%d\n", info[1][N]);
- }
+}
