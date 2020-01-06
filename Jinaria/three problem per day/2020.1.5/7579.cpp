@@ -17,26 +17,24 @@ int main() {
     vector<int> costs(N + 1);
     for (int i = 1; i <= N; ++i) scanf("%d", &costs[i]);
 
-    for (int i = 0; i <= N; ++i)
+    memset(d[0], 0, 10001);
+    for (int i = 1; i <= N; ++i)
         memset(d[i], -1, 10001);
-    for (int i = 0; i <= N; ++i) d[i][0] = 0;
+    for (int i = 1; i <= N; ++i) d[i][0] = 0;
     int cost = 0;
+    bool flag = false;
     for (cost = 0; cost <= 10000; ++cost) {
-        int maxMem = -1;
-        int idx = -1;
-        for()
-        for (int j = 1; j <= N; ++j) {
-            if (cost - costs[j] >= 0) {
-                if (maxMem < memory[j] + d[j][cost - costs[j]]) {
-                    maxMem = memory[j] + d[j][cost - costs[j]];
-                    idx = j;
-                }
-                d[j][cost] = d[j][cost - costs[j]] + memory[j];
+        
+        for (int idx = 1; idx <= N; ++idx) {
+            if (cost - costs[idx] >= 0)
+                d[idx][cost] = max(d[idx][cost], d[idx - 1][cost - costs[idx]] + memory[idx]);
+            d[idx][cost] = max(d[idx][cost], d[idx - 1][cost]);
+            if (d[idx][cost] >= M) {
+                flag = true;
+                break;
             }
         }
-        if (maxMem >= M) {
-            break;
-        }
+        if (flag) break;
     }
     printf("%d\n", cost);
 }
