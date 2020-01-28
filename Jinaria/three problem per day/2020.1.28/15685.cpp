@@ -17,12 +17,12 @@ public:
 
 class Curve {
 private:
-    void rotate(vector<Point>& points, vector<Point> &ret, int g) {
+    void rotate(vector<Point>& points, vector<Point>& ret, int g) {
         ret = points;
         for (int i = 0; i < g; ++i) {
             Point stan = *ret.rbegin();
             for (int i = ret.size() - 2; i >= 0; --i) {
-                ret.emplace_back(ret[i].y - stan.y + stan.x, ret[i].x - stan.x + stan.y);
+                ret.emplace_back(stan.y - ret[i].y + stan.x, ret[i].x - stan.x + stan.y);
             }
         }
     }
@@ -34,7 +34,7 @@ public:
 
     }
     Curve(int x, int y, int d, int g) :point(x, y), d(d), g(g) {
-        
+
     }
     void calculate() {
         vector<Point> points;
@@ -75,12 +75,13 @@ int main() {
         }
     }
 
+
     int ans = 0;
     for (int i = 0; i < 100; ++i) {
         for (int j = 0; j < 100; ++j) {
             int bit = 0;
             for (int k = 0; k < 4; ++k) {
-                if (check[j + k / 2][i + k % 2])
+                if (check[i + k % 2][j + k / 2])
                     bit |= (1 << k);
             }
             if (bit == MASK)
