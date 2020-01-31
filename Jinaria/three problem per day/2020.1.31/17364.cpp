@@ -17,7 +17,7 @@ int main() {
         scanf("%d %d", &contest[i].second, &contest[i].first);
 
     sort(contest.begin(), contest.end());
-    
+
     set<pair<int, int>> end_set;
     vector<int> store(N + 1);
     int ans = 0;
@@ -29,16 +29,24 @@ int main() {
         if (ke >= cur_start)
             continue;
         bool flag = false;
-        if (end_set.size() < K - 1) {
-            end_set.insert({ MAX_NUM - cur_end, ++cur_k });
-            store[cur_k] = MAX_NUM - cur_end;
-            flag = true;
+        auto k = end_set.lower_bound({ MAX_NUM - cur_start, 0 });
+        if (k == end_set.end()) {
+            if (cur_k < K - 1) {
+                end_set.insert({ MAX_NUM - cur_end, ++cur_k });
+                store[cur_k] = MAX_NUM - cur_end;
+                flag = true;
+            }
         }
         else {
-            auto k = end_set.lower_bound({ MAX_NUM - cur_start, 0 });
-            if (k != end_set.end()) {
-                if (store[k->second] == MAX_NUM - cur_start)
+            if (store[k->second] == MAX_NUM - cur_start && cur_k < K - 1) {
+                end_set.insert({ MAX_NUM - cur_end, ++cur_k });
+                store[cur_k] = MAX_NUM - cur_end;
+                flag = true;
+            }
+            else {
+                while (k != end_set.end() && store[k->second] == MAX_NUM - cur_start) {
                     k++;
+                }
                 if (k != end_set.end()) {
                     int ck = k->second;
                     end_set.erase(k);
@@ -46,8 +54,8 @@ int main() {
                     store[ck] = MAX_NUM - cur_end;
                     flag = true;
                 }
-                
             }
+            
         }
         if (!flag) {
             ans++;
