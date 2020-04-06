@@ -17,57 +17,49 @@ int node[3] = { 1, 0, 0 };
 
 int N, E;
 
-int getDist(int start, int end) {
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> heap;
-    heap.push({ 0, start });
-    vector<bool> check(N + 1, false);
-    check[start] = true;
-    while (!heap.empty()) {
-        pair<int, int> temp = heap.top();
-        heap.pop();
-        if (temp.second == end) {
-            return temp.first;
-        }
-        
-        //for (auto it = city[temp.second].begin(); it != city[temp.second].end(); ++it) {
-        for(int i = 1; i <= N; ++i){
-            //if (check[it->first])
-            if(city[temp.second][i] == 0 || check[i] || i == temp.second)
-                continue;
-            heap.push({ temp.first + city[temp.second][i], i });
-            check[i] = true;
+void func() {
+    for (int start = 0; start < 3; ++start) {
+        priority_queue<pair<int, int>> heap;
+        heap.push({ 0, node[start] });
+        dist[start][node[start]] = 0;
+        while (!heap.empty()) {
+            int cur = heap.top().second;
+            int cur_cost = -heap.top().first;
+            heap.pop();
+            if (dist[start][cur] < cur_cost) continue;
+            for (int next = 1; next <= N; ++next) {
+                if (city[cur][next] && dist[start][next] > cur_cost + city[cur][next]) {
+                    dist[start][next] = cur_cost + city[cur][next];
+                    heap.push({ -dist[start][next], next });
+                }
+            }
         }
     }
-    return 0;
 }
 
 
 int main() {
     ios::sync_with_stdio(false);
 
-    
+
     cin >> N >> E;
-    //city.assign(N + 1, vector<pair<int, int>>());
     for (int i = 0; i < E; ++i) {
         int a, b, c;
         cin >> a >> b >> c;
-        //city[a].push_back({ b, c });
-        //city[b].push_back({ a, c });
         city[a][b] = city[b][a] = c;
-    }
+    }   
     cin >> node[1] >> node[2];
 
-    //int d11 = getDist(1, v1), d12 = getDist(v1, v2), d13 = getDist(v2, N);
-    //int d21 = getDist(1, v2), d22 = getDist(v2, v1), d23 = getDist(v1, N);
-
-    int ans = 0;
-    if (d11 && d12 && d13) {
-        ans = d11 + d12 + d13;
-        if (d21 && d22 && d23) {
-            ans = min(ans, d21 + d22 + d23);
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j <= N; ++j) {
+            dist[i][j] = MAX_NUM;
         }
     }
-    if (ans == 0) {
+
+    func();
+    int ans = min(dist[0][node[1]] + dist[1][node[2]] + dist[2][N], dist[0][node[2]] + dist[2][node[1]] + dist[1][N]);
+
+    if (ans >= MAX_NUM) {
         cout << -1 << '\n';
     }
     else {
